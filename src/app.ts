@@ -1,7 +1,6 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { announceHandler } from "@/api/v1/announce";
-// Import API route handlers
 import { bedroomHandler } from "@/api/v1/bedroom";
 import { lightsApp } from "@/api/v1/lights";
 import { musicHandler } from "@/api/v1/music";
@@ -9,10 +8,9 @@ import { musicControlHandler, playMusicHandler, musicTextCommandHandler } from "
 import { volumeApp } from "@/api/v1/volume";
 import { sensorsApp } from "@/api/v1/sensors";
 import { dndApp } from "@/api/v1/dnd";
-import { HomeIOMCP } from "@/mcp/server";
 import type { Env } from "@/types/env";
 
-const app = new Hono<{ Bindings: Env }>();
+export const app = new Hono<{ Bindings: Env }>();
 
 // Enable CORS
 app.use("*", cors());
@@ -158,36 +156,3 @@ app.route("/api/sensors", sensorsApp);
 
 // DND routes
 app.route("/api/dnd", dndApp);
-
-// Track if we've logged startup
-let startupLogged = false;
-
-export default {
-	async fetch(request: Request, env: Env, ctx: ExecutionContext) {
-		const url = new URL(request.url);
-
-		// Log startup on first request
-		if (!startupLogged) {
-			console.log("=".repeat(60));
-			console.log("🚀 Alexa MCP Server Starting...");
-			console.log(`📡 Server URL: ${url.origin}`);
-			console.log(`🔐 Authentication: ${env.UBID_MAIN ? "✅ Configured" : "❌ Missing"}`);
-			console.log(`🌍 Cookie Region: ${env.COOKIE_SUFFIX || "-main (US)"}`);
-			console.log("=".repeat(60));
-			startupLogged = true;
-		}
-
-		if (url.pathname === "/sse" || url.pathname === "/sse/message") {
-			return HomeIOMCP.serveSSE("/sse").fetch(request, env, ctx);
-		}
-
-		if (url.pathname === "/mcp") {
-			return HomeIOMCP.serve("/mcp").fetch(request, env, ctx);
-		}
-
-		// Handle all other routes with Hono app
-		return app.fetch(request, env, ctx);
-	},
-};
-
-export { HomeIOMCP };

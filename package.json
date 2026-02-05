@@ -1,27 +1,55 @@
 {
 	"name": "alexa-mcp-server",
 	"version": "1.0.0",
+	"description": "Model Context Protocol server for controlling Amazon Alexa devices and smart home systems",
+	"keywords": [
+		"alexa",
+		"mcp",
+		"model-context-protocol",
+		"langchain",
+		"langgraph",
+		"ai-agents",
+		"smart-home",
+		"iot",
+		"hono",
+		"nodejs"
+	],
+	"author": "",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/gsampaio-rh/alexa-mcp-server.git"
+	},
+	"bugs": {
+		"url": "https://github.com/gsampaio-rh/alexa-mcp-server/issues"
+	},
+	"homepage": "https://github.com/gsampaio-rh/alexa-mcp-server#readme",
 	"private": true,
+	"type": "module",
 	"scripts": {
-		"deploy": "wrangler deploy",
-		"dev": "wrangler dev",
+		"dev": "tsx watch src/server.ts",
+		"start": "tsx src/server.ts",
+		"build": "tsc",
 		"format": "biome format --write",
 		"lint": "biome lint",
 		"lint:fix": "biome lint --fix",
-		"start": "wrangler dev",
-		"cf-typegen": "wrangler types",
 		"type-check": "tsc --noEmit"
 	},
 	"dependencies": {
+		"@hono/node-server": "^1.19.9",
 		"@modelcontextprotocol/sdk": "1.18.0",
 		"agents": "0.1.4",
+		"dotenv": "^16.6.1",
 		"hono": "^4.9.9",
 		"zod": "^3.25.76"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.2.4",
 		"@types/node": "^24.5.2",
-		"typescript": "5.9.2",
-		"wrangler": "^4.40.2"
+		"tsx": "^4.21.0",
+		"typescript": "5.9.2"
+	},
+	"engines": {
+		"node": ">=18.0.0"
 	}
 }

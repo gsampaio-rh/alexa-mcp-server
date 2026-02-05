@@ -36,6 +36,7 @@ import {
 } from "@/mcp/tools/dnd";
 
 export class HomeIOMCP extends McpAgent<Env> {
+	env!: Env;
 	server = new McpServer({
 		name: "Alexa Home Automation",
 		version: "1.0.0",

@@ -18,12 +18,8 @@ export async function bedroomHandler(c: Context<{ Bindings: Env }>) {
 		return c.json({ error: "Missing UBID_MAIN or AT_MAIN in environment." }, 500);
 	}
 
-	// 🌐 Try edge cache first (5 s TTL)
-	const cacheKey = new Request(c.req.url);
-	const cached = await caches.default.match(cacheKey);
-	if (cached) {
-		return cached;
-	}
+	// Note: Caching removed for Node.js compatibility
+	// In production, consider using a caching library like node-cache or redis
 
 	// Multi-strategy approach to find all possible entities
 	const stateRequests = [];
@@ -276,6 +272,5 @@ export async function bedroomHandler(c: Context<{ Bindings: Env }>) {
 	const jsonResponse = new Response(JSON.stringify(response), {
 		headers: { "content-type": "application/json", "Cache-Control": cacheControl },
 	});
-	c.executionCtx?.waitUntil(caches.default.put(cacheKey, jsonResponse.clone()));
 	return jsonResponse;
 }

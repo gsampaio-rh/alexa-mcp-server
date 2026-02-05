@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-// Environment validation schema for Cloudflare Workers
+// Environment validation schema
 export const EnvSchema = z.object({
 	/** Amazon ubid-main cookie value (or regional variant like ubid-acbbr) */
 	UBID_MAIN: z.string().min(1, "UBID_MAIN is required"),
@@ -17,7 +17,7 @@ export const EnvSchema = z.object({
 	API_KEY: z.string().optional(),
 
 	/** Base URL for the Alexa API service */
-	API_BASE: z.string().url("API_BASE must be a valid URL"),
+	API_BASE: z.string().url("API_BASE must be a valid URL").default("http://localhost:8787"),
 
 	/** IANA timezone (e.g. 'America/New_York') for announcement scheduling */
 	TZ: z.string().optional(),

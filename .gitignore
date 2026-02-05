@@ -167,10 +167,10 @@ dist
 .yarn/install-state.gz
 .pnp.\*
 
-# wrangler project
-
+# Environment files
 .dev.vars
-.wrangler/
+.env
+.env.local
 
 .dev.vars*
 !.dev.vars.example

@@ -13,7 +13,6 @@
 			"src/**/*",
 			"*.json",
 			"!worker-configuration.d.ts",
-			"!.wrangler",
 			"!node_modules",
 			"!dist"
 		],

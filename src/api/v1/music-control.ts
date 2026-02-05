@@ -184,7 +184,7 @@ export async function musicControlHandler(c: Context<{ Bindings: Env }>) {
 		return c.json({
 			error: `Music control failed: ${res.status}`,
 			details: errorText.substring(0, 200),
-		}, res.status);
+		}, res.status as any);
 	}
 
 	const result = await res.json().catch(() => ({}));
@@ -352,7 +352,7 @@ export async function playMusicHandler(c: Context<{ Bindings: Env }>) {
 		return c.json({
 			error: `Play music failed: ${res.status}`,
 			details: errorText.substring(0, 200),
-		}, res.status);
+		}, res.status as any);
 	}
 
 	const result = await res.json().catch(() => ({}));
@@ -510,7 +510,7 @@ export async function musicTextCommandHandler(c: Context<{ Bindings: Env }>) {
 		return c.json({
 			error: `Text command failed: ${res.status}`,
 			details: errorText.substring(0, 200),
-		}, res.status);
+		}, res.status as any);
 	}
 
 	const result = await res.json().catch(() => ({}));
