@@ -61,8 +61,7 @@ alexa-mcp-server/
 │   ├── types/           # TypeScript type definitions
 │   ├── utils/           # Utility functions
 │   └── index.ts         # Main entry point
-├── docs/                # Documentation
-└── scripts/             # Utility scripts
+└── docs/                # Documentation
 ```
 
 ## Making Changes

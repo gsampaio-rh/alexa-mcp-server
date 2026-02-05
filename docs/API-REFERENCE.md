@@ -192,22 +192,6 @@ curl -X POST http://localhost:8787/api/music/text-command \
 - **Music Search**: Uses `behaviors/preview` with `Alexa.Music.PlaySearchPhrase`
 - **Text Commands**: Uses `behaviors/preview` with `Alexa.TextCommand` (most flexible)
 
-**Test Script:**
-```bash
-# Check current status
-python3 scripts/test-music-playback.py status
-
-# Control playback
-python3 scripts/test-music-playback.py play
-python3 scripts/test-music-playback.py pause
-
-# Search and play
-python3 scripts/test-music-playback.py search "jazz music"
-
-# Send text command
-python3 scripts/test-music-playback.py text "play relaxing music on Spotify"
-```
-
 #### `POST /api/music/text-command` (Detailed)
 Send natural language command to Alexa.
 
@@ -244,12 +228,6 @@ curl -X POST http://localhost:8787/api/music/text-command \
   -d '{"text": "play my Discover Weekly playlist"}'
 ```
 
-**Test Script:**
-```bash
-python3 scripts/test-music-playback.py status
-python3 scripts/test-music-playback.py play
-python3 scripts/test-music-playback.py search "jazz music"
-```
 
 ### Smart Home
 
