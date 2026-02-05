@@ -178,6 +178,9 @@ dist
 !.env.example
 
 
+# Cloudflare Workers (no longer used)
+.wrangler/
+
 #claude
 .claude/
 .vscode/
